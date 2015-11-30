@@ -1,0 +1,48 @@
+/* views/home/lhome.html */
+
+#home {
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    #tables {
+        background-color: #9cca7c;
+    }
+
+    #customers { 
+        background-color: #8bccb9;
+    }
+
+    #menu {
+        background-color: #a8dae0;
+    }
+
+    #analysis {
+        background-color: #83c6db;
+    }
+        
+    .ion-nav-bar {
+        background-color: #3b4b54;
+    }
+
+    .nav-item {
+        width: 100%;
+        height: 25%;
+        color: white;
+        position: absolute;
+    }
+
+    .nav-item-title {
+        text-align: left;
+        color: white; 
+    }
+
+    .nav-item-text {
+        text-align: right;
+    }
+
+    .row {
+        height: 25%;
+    }
+    
+
+}

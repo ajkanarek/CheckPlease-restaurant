@@ -1,0 +1,31 @@
+<ion-view>
+  <ion-content id="register" scroll="false">
+		<div class="row">
+			<div class="col">
+  			<h1 id="title">Register</h1>
+  		</div>
+  	</div>
+  	<div class="row">
+  		<div class="col">
+  			<label class="item item-input item-floating-label">
+				<span class="input-label">Restaurant Username</span>
+				<input type="text" placeholder="Restaurant Username" ng-model="restaurant.username">
+			</label>
+		    <label class="item item-input item-floating-label">
+		        <span class="input-label">Password</span>
+		        <input type="password" placeholder="Password" ng-model="restaurant.password">
+		  	</label>
+		</div>
+	</div>
+	<div ng-if="error.length" class="row">
+		<div class="col">
+			<div id="error">{{ error }}</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<button id="register_button" class="button button-full button-royal" ng-click="register()">Register</button>
+		</div>
+	</div>
+  </ion-content>
+</ion-view>

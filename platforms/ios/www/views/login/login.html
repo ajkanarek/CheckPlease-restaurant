@@ -1,0 +1,36 @@
+<ion-view>
+  <ion-content id="login" scroll="false">
+		<div class="row">
+			<div class="col">
+  			<h1 id="title">Tab</h1>
+  		</div>
+  	</div>
+  	<div class="row">
+  		<div class="col">
+			<label class="item item-input item-floating-label">
+				<span class="input-label">Email</span>
+				<input type="text" placeholder="Email" ng-model="user.email">
+			</label>
+		    <label class="item item-input item-floating-label">
+		        <span class="input-label">Password</span>
+		        <input type="password" placeholder="Password" ng-model="user.password">
+		  	</label>
+		</div>
+	</div>
+	<div ng-if="error.length" class="row">
+		<div class="col">
+			<div id="error">{{ error }}</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+		  	<button id="signup_button" class="button button-clear" ui-sref="register">New? Sign Up Instead</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<button id="login_button" class="button button-full button-royal" ng-click="validate()">Log In</button>
+		</div>
+	</div>
+  </ion-content>
+</ion-view>

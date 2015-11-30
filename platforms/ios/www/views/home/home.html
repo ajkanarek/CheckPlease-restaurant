@@ -1,0 +1,38 @@
+<ion-view view-title="home-view" class="home-view">
+  <ion-content class="padding">
+
+  <div class="header">
+	  <h1>CheckPlease</h1>
+  </div>
+
+
+  <button class="nav-item" id="orders" ui-sref="orders">
+  	<h3 class="nav-item-title">ORDERS</h3>
+  	<p class="nav-item-text">See all</p>
+  </button>
+
+<!-- This will be implemented after Alpha
+  <button class="nav-item" id="split">
+  	<h3 class="nav-item-title">SPLIT</h3>
+  	<p class="nav-item-text">By Item</p>
+  </button>
+-->
+
+  <button class="nav-item" id="tips" ui-sref="tip">
+  	<h3 class="nav-item-title">TIPS</h3>
+  	<!-- This will be replaced with a database value -->
+  	<p class="nav-item-text">{{order.tip}}%</p>
+  </button>
+
+  <button class="nav-item" id="total">
+  	<h3 class="nav-item-title">TOTAL</h3>
+  	<!-- This will be replaced with a database value -->
+  	<p class="nav-item-text">${{order.total}}</p>
+  </button>
+
+  <button class="nav-item" id="pay"> <!-- Create ng-model to confirm payment --> 
+  	<h3>Pay</h3>
+  </button>
+
+	</ion-content>
+</ion-view>

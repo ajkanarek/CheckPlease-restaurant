@@ -1,0 +1,37 @@
+<ion-view cache-view="false" id="side_menu">
+	<ion-side-menus>
+
+		<ion-side-menu side="left">
+			<side-menu></side-menu>
+		</ion-side-menu>
+
+		<ion-side-menu-content>
+		  	<ion-content id="scan" scroll="false" class="default-bg">
+		  		<img ng-if="restaurant.img" class="restaurant" ng-src="{{ restaurant.img }}" />
+		  		<div id="explanation" ng-if="!restaurant.img" class="row">
+		  			<div class="col">
+		  				Find the QR Code on your table and scan it with your phone to check in to the restaurant.
+		  			</div>
+		  			<div class="col">
+				  		<img src="views/scan/imgs/phone_image.png" />
+		  			</div>
+		  		</div>
+		  		<h1 id="restaurant_name" ng-if="restaurant.name">{{ restaurant.name }}</h1>
+		  		<p id="restaurant_description" ng-if="restaurant.description">{{ restaurant.description }}</p>
+		  		<h4 id="table_number" ng-if="restaurant.table_id">Table Number: {{ restaurant.table_id }}</h4>
+		  		<div id="button_row" class="row">
+		  			<div ng-if="!restaurant.id" class="col">
+				  		<img id="down_arrow" src="views/scan/imgs/down_arrow.png" />
+						<button id="scan_button" ng-click="scan()" class="button button-full button-royal">Scan QR Code</button>
+					</div>
+		  			<div ng-if="restaurant.id" class="col">
+						<button id="scan_button" ng-click="scan()" class="button button-royal left">Scan</button>
+					</div>
+		  			<div ng-if="restaurant.id" class="col">
+						<button id="go_button" ng-click="goToTab()" class="button button-balanced right">Go</button>
+					</div>
+				</div>
+			</ion-content>
+		</ion-side-menu-content>
+	</ion-side-menus>
+</ion-view>

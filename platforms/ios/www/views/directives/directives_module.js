@@ -1,0 +1,1 @@
+angular.module('views.directives', ['views.directives.side_menu']);

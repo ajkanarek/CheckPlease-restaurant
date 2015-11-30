@@ -1,0 +1,23 @@
+/* Includes all the SCSS from the different views. 
+ * Please keep in lexicographical order for tidyness reasons.
+ */
+
+/* Directives */
+@import 'directives/directives';
+
+
+/* Individual Views */
+
+@import 'login/login';
+
+@import 'register/register';
+
+@import 'home/home';
+
+@import 'tables/tables';
+
+@import 'customers/customers';
+
+@import 'menu/menu';
+
+@import 'analysis/analysis';

@@ -1,0 +1,17 @@
+#side_menu {
+	/* Containing div */
+	ion-side-menu.menu.menu-left {
+		background-color: #2B3B44; /* Slightly darker than $light_grey */
+	}
+
+	ion-item {
+		p {
+			color: #FFF;
+		}
+
+		i {
+			color: #FFF;
+		}
+		background-color: #222;
+	}
+}

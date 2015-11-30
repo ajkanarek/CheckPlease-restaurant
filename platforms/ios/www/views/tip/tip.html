@@ -1,0 +1,53 @@
+<ion-view view-title="tip-view" class="tip-view">
+  <ion-content>
+  		<div>
+  			<a class="button icon-left ion-chevron-left button-clear button-light" ui-sref="home">Back</a>
+  			<h1 class="title">Tip</h1>
+		</div>
+
+		<div class="list has-header">
+			
+		  	<label class="item item-radio tip-label">
+		    	<input value="15" type="radio" name="tip" ng-model="order.tip">
+		    	<div class="item-content">
+		     		 15%
+		    	</div>
+		    	<i class="radio-icon ion-checkmark"></i>
+		 	</label>
+
+
+			<label class="item item-radio tip-label">
+			    <input value="18" type="radio" name="tip" ng-model="order.tip" class="tip-label">
+			    <div class="item-content" class="tip-label">
+			      18%
+			    </div>
+			    <i class="radio-icon ion-checkmark"></i>
+			</label>
+
+			<label class="item item-radio tip-label">
+				<input value="20" type="radio" name="tip" ng-model="order.tip">
+				<div class="item-content">
+				  20%
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+
+			<label class="item item-radio tip-label">
+				<input value="25" type="radio" name="tip" ng-model="order.tip">
+				<div class="item-content">
+				  25%
+				</div>
+				<i class="radio-icon ion-checkmark"></i>
+			</label>
+
+			<!-- Only Show the Confirm Button if a tip is selected -->
+			<div ng-show="order.tip == '15' || order.tip == '18' || order.tip == '20' || order.tip == '25'">
+				<button class="button button-full button-positive" id="submit-button" ui-sref="home">
+					Confirm Tip
+				</button>
+			</div>
+
+		</div>
+
+	</ion-content>
+</ion-view>

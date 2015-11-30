@@ -1,0 +1,70 @@
+/* views/scan/scan.html */
+
+#scan {
+
+	#restaurant_name {
+		text-align: center;
+	    color: #FFF;
+	    text-shadow: 0px 0px 5px #222;
+	    width: 100%;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	}
+
+	#restaurant_description {
+		padding: 5px 10px;
+    	color: #CCC;
+	}
+
+	#explanation {
+		img {
+			width: 100%;
+		}
+
+		text-align: center;
+   		padding: 10px;
+		color: #FFF;
+	}
+
+	#table_number {
+		   color: #DDD;
+	    text-align: center;
+	    font-size: 1.5em;
+	    position: absolute;
+	    left: 0;
+	    right: 0;
+	    bottom: 55px;
+	}
+
+	#down_arrow {
+		position: relative;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    text-align: center;
+	    display: block;
+	    margin: 0px auto;
+	}
+
+	img.restaurant {
+		display: block;
+	    margin: 20px auto;
+	    border: 3px #FFF solid;
+	    box-shadow: 0px 0px 15px 5px #000;
+	    width: 90%;
+	    height: auto;
+	}
+
+	#button_row {
+		position: absolute;
+		bottom: 0;
+	}
+
+	#scan_button {
+		width: 100%;
+	}
+
+	#go_button {
+		width: 100%;
+	}
+}
