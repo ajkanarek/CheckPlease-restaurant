@@ -5,7 +5,6 @@ angular.module('views.login', ['auth'])
 	/* User login credentials */
 	$scope.restaurant = {
 		username: "",
-		waiter_id: "",
 		password: ""
 	};
 
@@ -24,7 +23,6 @@ angular.module('views.login', ['auth'])
 
 		/* Check that fields are not empty */
 		if(restaurant.username.length == 0) { $scope.error = "Please enter a username"; return; }
-		else if(restaurant.waiter_id.length == 0) { $scope.error = "Please enter a waiter_id"; return; }
 		else if(restaurant.password.length == 0) { $scope.error = "Please enter a password"; return; }
 
 		$scope.logging_in = true;

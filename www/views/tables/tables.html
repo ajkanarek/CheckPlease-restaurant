@@ -6,13 +6,13 @@
   </ion-header-bar>
 
   <ion-content class= "has-header" id="tables" scroll="true">
-  	<div class="container" id="container">
+  	<div class="container" id="table-container">
  <!--
-			<button class="col table-button" ng-click="goToCustomer({{ table_num }})">
+			<button class="table-button" ng-click="goToCustomer({{ curr_customer.id }})">
 				<div class="table-content">
-					<p>Table Number: ' + table_num + '</p>
-					<p>Customer Name: ' + customer_name + '</p>
-					<p>Status: </p>
+					<p>Table Number: {{table_num}}</p>
+					<p>Customer Name: {{curr_customer.name}}</p>
+					<p>Status: Occupied</p>
 				</div>
 			</button>
 -->

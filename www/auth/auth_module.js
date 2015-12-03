@@ -97,6 +97,9 @@ angular.module('auth', ['socket', 'auth.config'])
     	},
     	validateToken: function() {
     		return validateToken();
+    	},
+    	getToken: function() {
+    		return angular.copy(getToken());
     	}
     };
 }]);
