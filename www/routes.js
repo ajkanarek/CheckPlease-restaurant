@@ -17,7 +17,7 @@ angular.module('checkplease')
     });
 
     $stateProvider.state('customers', {
-        url: '/customers',
+        url: '/customers/:table_id',
         templateUrl: 'views/customers/customers.html',
         controller: 'customersCtrl'
     });

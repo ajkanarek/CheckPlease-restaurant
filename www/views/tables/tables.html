@@ -1,11 +1,24 @@
 <ion-view>
-	<ion-header-bar class="bar bar-header">
+	<ion-header-bar class="bar bar-header" id="tables-header">
     <button class="button button-icon icon ion-chevron-left" ng-click="goBack()"></button>
 	  <h1 class="title">Tables</h1>
 	  <button class="button button-icon icon ion-navicon"></button>
   </ion-header-bar>
 
-  <ion-content class= "has-header" id="tables" scroll="false">
+  <ion-content class= "has-header" id="tables" scroll="true">
+  	<div class="container" id="container">
+ <!--
+			<button class="col table-button" ng-click="goToCustomer({{ table_num }})">
+				<div class="table-content">
+					<p>Table Number: ' + table_num + '</p>
+					<p>Customer Name: ' + customer_name + '</p>
+					<p>Status: </p>
+				</div>
+			</button>
+-->
+		</div>
+
+  
 	</ion-content>
 
 </ion-view>

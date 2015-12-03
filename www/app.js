@@ -1,5 +1,5 @@
-angular.module('checkplease', ['ionic', 'ngCordova', 'auth', 'socket', 'views'])
-.run(['$ionicPlatform', '$cordovaSplashscreen', '$ionicSideMenuDelegate', '$state', 'auth', function($ionicPlatform, $cordovaSplashscreen, $ionicSideMenuDelegate, $state, auth) {
+angular.module('checkplease', ['ionic', 'ngCordova', 'auth', 'restaurant', 'socket', 'views'])
+.run(['$ionicPlatform', '$cordovaSplashscreen', '$ionicSideMenuDelegate', '$state', '$compile', 'auth', 'restaurant', function($ionicPlatform, $cordovaSplashscreen, $ionicSideMenuDelegate, $state, $compile, auth, restaurant) {
     $ionicPlatform.ready(function() {
         /*
         auth.validateToken().then(function() { // Token is still valid 
