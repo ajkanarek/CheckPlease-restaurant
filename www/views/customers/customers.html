@@ -15,13 +15,21 @@
   	</div>
 -->
 
-    <button class="customer-button" ng-repeat="menu_item in curr_customer.menu_items">
-      <h1>{{ menu_item.name}} x{{ menu_item.quantity }} </h1>
-      <h2>price: ${{ getPrice(menu_item) }}</h2>
-    </button>
+  <div class="customer-container">
+    <div class="customer-item" ng-repeat="menu_item in curr_customer.menu_items">
+      <div class="customer-content">
+        <h1>{{ menu_item.name}} x{{ menu_item.quantity }} </h1>
+        <h2>price: ${{ getPrice(menu_item) }}</h2>
+      </div>
+    </div>
 
-    <button class="button button-icon icon ion-plus customer-button" id="add-menu-item" ng-click="modal.show()">
-    </button>
+    <button class="button button-icon icon ion-plus customer-item" id="add-menu-item" ng-click="modal.show()"></button>
+  </div>
+
+  <div class="order-summary">
+    <h3>Total: {{order_total}} <h3>
+    <button class="button button-block button-positive">Order Complete</button>
+  </div>
 
 	</ion-content>
 

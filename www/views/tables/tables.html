@@ -5,20 +5,18 @@
   </ion-header-bar>
 
   <ion-content class= "has-header" id="tables" scroll="true">
- <!--
-			<button class="table-button" ng-click="goToCustomer({{ curr_customer.id }})">
+		<div class="table-container">
+			<button class="table-item" ng-repeat="customer in customer_list" ng-click="goToCustomer({{ customer.id }})">
 				<div class="table-content">
-					<p>Table Number: {{table_num}}</p>
-					<p>Customer Name: {{curr_customer.name}}</p>
-					<p>Status: Occupied</p>
+					<div id="customer-image"> </div>
+					<div id="customer-info">
+						<h1> table number: {{ customer.table_id }}</h1>
+						<h2>name: {{ customer.name }}</h2>
+					</div>
+
 				</div>
 			</button>
--->
-
-	<button class="table-button" ng-repeat="customer in customer_list" ng-click="goToCustomer({{ customer.id }})">
-		<h1>table number: {{ customer.table_id }}</h1>
-		<h2>name: {{ customer.name }}</h2>
-	</button>
+		</div>
   
 	</ion-content>
 

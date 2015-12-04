@@ -6,8 +6,17 @@ angular.module('views.customers', ['restaurant'])
 	$scope.restaurant = restaurant.getRestaurant();
 	$scope.all_menu_items = restaurant.getAllMenuItems($scope.restaurant.id);
 	$scope.curr_customer = restaurant.getCustomerById($stateParams.customer_id);
-	$scope.copy = angular.copy($scope.curr_customer)
+	$scope.copy = angular.copy($scope.curr_customer);
+	$scope.order_total = 0;
 
+	updateTotal = function() {
+		for (var i = 0; i < $scope.curr_customer.menu_items.length; ++i) {
+			$scope.order_total += ( $scope.curr_customer.menu_items[i].price *  
+										$scope.curr_customer.menu_items[i].quantity );
+		}
+	}
+	
+	updateTotal();
 
 	$scope.goBack = function() {
 		window.history.back();
@@ -43,7 +52,6 @@ angular.module('views.customers', ['restaurant'])
 	}
 
 	$scope.getPrice = function(menu_item) {
-
 		return menu_item.price * menu_item.quantity;
 	}
 
@@ -61,6 +69,7 @@ angular.module('views.customers', ['restaurant'])
 
 	$scope.updateMenuItems = function() {
 		$scope.curr_customer = angular.copy($scope.copy);
+		updateTotal();
 		$scope.modal.hide();
 	}
 
@@ -69,6 +78,7 @@ angular.module('views.customers', ['restaurant'])
 		$scope.copy = angular.copy($scope.curr_customer);
 		$scope.modal.hide();
 	}
+
 
 	//returns menu item 
 

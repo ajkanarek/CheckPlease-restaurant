@@ -1,30 +1,44 @@
 /* views/tables/tables.html */
 
+
 #tables-header {
 	
 }
 #tables {
-	background-color: #8bccb9;
-	.container {
-		width: 100%;
-		height: 100%;
+
+	.table-container {
+		display: -webkit-box;
+	    display: -moz-box;
+	    display: -ms-flexbox;
+	    display: -webkit-flex;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		align-items: stretch;
+		align-content: flex-start;
+		padding: 5px;
 	}
 
-	.table-row {
-		height: 200px;
-		width: 100%;
-	}
-
-	.table-button {
-		height: 100%;
-		width: 25%;
-		padding: 20px;
+	.table-item {
+		border-radius: 25px;
+  	    border: 5px solid black;
+  	    margin: 5px;
 	}
 
 	.table-content {
-		background-color: white;
-		height: 100%;
-		width: 100%;
+		
 	}
+	#cutomer-image {
+		height: 80%;
+		background-color: white;
+	}
+
+	#cutomer-info {
+		color: white;
+		height: 20%;
+		background-color: #3b4b54
+	}
+	  
 
 }
