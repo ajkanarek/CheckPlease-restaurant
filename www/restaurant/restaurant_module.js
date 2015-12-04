@@ -1,6 +1,6 @@
 /* Responsible for keeping track of restaurant info */
 angular.module('restaurant', ['socket', 'restaurant.config', 'auth'])
-.factory('restaurant', ['$rootScope', '$state', 'socket', 'auth', function($rootScope, $state, socket, auth) {
+.factory('restaurant', ['$rootScope', '$state', '$q', 'socket', 'auth', function($rootScope, $state, $q, socket, auth) {
 
 	
 
@@ -11,27 +11,98 @@ angular.module('restaurant', ['socket', 'restaurant.config', 'auth'])
 	};
 
 	var customer_menu_item = {
+		id: "",
 		name: "",
 		price: "",
+		quantity: "",
 		img: ""
 	};
 
 	customer = {
 			id: "",
 			name: "",
-			menu_items: [customer_menu_item],
+			menu_items: [],
 			table_id: ""
 	};
 
-	var allMenuItems = [];
 
 	/*************************************************************************
 	********************** DUMMY DATA **************************************
 	************************************************************************/
 
 	set_restaurant(10, "Ashley's");
-	var temp_menu_list = [new set_customer_menu_item("Beef Salad", 20), new set_customer_menu_item("Chicken", 20), 
-						  set_customer_menu_item("Broccoli", 20), set_customer_menu_item("Desser", 20)];
+	//var temp_menu_list = [new set_customer_menu_item("Beef Salad", 20), new set_customer_menu_item("Chicken", 20), 
+						  //set_customer_menu_item("Broccoli", 20), set_customer_menu_item("Desser", 20)];
+
+	var customer_menu_item1 = {
+		id: 1,
+		name: "Beef Salad",
+		price: 20,
+		quantity: 1,
+		img: ""
+	};
+
+	var customer_menu_item2 = {
+		id: 2,
+		name: "Chicken",
+		price: 12,
+		quantity: 1,
+		img: ""
+	};
+
+	var customer_menu_item3 = {
+		id: 3,
+		name: "Broccoli",
+		price: 5,
+		quantity: 1,
+		img: ""
+	};
+
+	var customer_menu_item4 = {
+		id: 4,
+		name: "Dessert",
+		price: 10,
+		quantity: 1,
+		img: ""
+	};
+
+	var customer_menu_item5 = {
+		id: 5,
+		name: "Shrimp",
+		price: 18,
+		quantity: 0,
+		img: ""
+	};
+
+	var customer_menu_item6 = {
+		id: 6,
+		name: "Turkey",
+		price: 14,
+		quantity: 0,
+		img: ""
+	};
+
+	var customer_menu_item7 = {
+		id: 7,
+		name: "Whale",
+		price: 140,
+		quantity: 0,
+		img: ""
+	};
+
+	var customer_menu_item8 = {
+		id: 8,
+		name: "Fishies",
+		price: 15,
+		quantity: 0,
+		img: ""
+	};
+
+
+	var temp_menu_list = [customer_menu_item1, customer_menu_item2, customer_menu_item3, customer_menu_item4];
+
+	var all_menu_items = [customer_menu_item1, customer_menu_item2, customer_menu_item3, customer_menu_item4, 
+					    customer_menu_item5, customer_menu_item6, customer_menu_item7, customer_menu_item8];
 
 	customer1 = {
 			id: 0,
@@ -172,7 +243,8 @@ angular.module('restaurant', ['socket', 'restaurant.config', 'auth'])
 				deferred.resolve(); 
 			}
 		});
-		return deferred.promise;
+
+		return customer_list;
 	}
 
 
@@ -197,6 +269,7 @@ angular.module('restaurant', ['socket', 'restaurant.config', 'auth'])
 		return deferred.promise;
 	}
 
+	// returns array of the customers current menu items
 	function getCustomerMenuItems(restaurant_id, customer_id) {
 		var deferred = $q.defer();
 
@@ -214,15 +287,18 @@ angular.module('restaurant', ['socket', 'restaurant.config', 'auth'])
 				deferred.resolve(); 
 			}
 		});
-		return deferred.promise;
+		var curr_customer = getCustomerById(customer_id); 
+		console.log(curr_customer);
+		return curr_customer.menu_items;
 		
 	}
 
 	// returns customer from local list by ID
 	function getCustomerById(customer_id) {
-		for (var temp_cust in customer_list) { 
-			if (temp_cust.id === customer_id) { 
-				return temp_cust;
+
+		for (var i = 0; i < customer_list.length; ++i) { 
+			if (customer_list[i].id == customer_id) { 
+				return customer_list[i];
 			}
 		}
 		return null;
@@ -237,7 +313,7 @@ angular.module('restaurant', ['socket', 'restaurant.config', 'auth'])
 			//console.log("customer name: " + temp_customer.name);
 			//console.log("customer table id: " + customer_list[i].table_id);
 			if (customer_list[i].table_id == table_num) {
-				return angular.copy(customer_list[i]);
+				return customer_list[i];
 			}
 		}
 		//console.log("No users at this table!!");
@@ -249,11 +325,41 @@ angular.module('restaurant', ['socket', 'restaurant.config', 'auth'])
 		return customer_list.menu_items.length;
 	}
 
+	// increases quantity of customer menu item
+	// adds it to customer menu item list if ti deosn't exist
+	function updateCustomerMenuItems(customer_id, menu_item) {
+		var temp_customer = getCustomerById(customer_id);
+		var item_exists = false;
+		for (var i = 0; i < temp_customer.menu_items.length; ++i) {
+			if (temp_customer.menu_items[i].id == menu_item.id) {
+				temp_customer.menu_items[i].quantity = menu_item.quantity;
+				item_exists = true;
+			}
+		}
+		if (!item_exists) {
+			temp_customer.menu_items.push(menu_item);
+		}
+	}
+
+	// checks if the menu item is in the customers menu item 
+	// returns quantity if it exists
+	// returns 0 if it doesn't exist
+	function getQuantityById(customer_id, menu_item) {
+		var temp_customer = getCustomerById(customer_id);
+		for (var i = 0; i < temp_customer.menu_items.length; ++i) {
+			if (temp_customer.menu_items[i].id == menu_item.id) {
+				return menu_item.quantity;
+				item_exists = true;
+			}
+		}
+		return 0;
+	}
+
 	/*************************************
 	****** MENU FUNCTIONS *********
 	**************************************/
 
-	function getAllMenuItem() {
+	function getAllMenuItems(restaurant_id) {
 		var deferred = $q.defer();
 
 		socket.emit('get_all_menu_items', restaurant_id, function(error, menu_items) {
@@ -269,7 +375,15 @@ angular.module('restaurant', ['socket', 'restaurant.config', 'auth'])
 				deferred.resolve(); 
 			}
 		});
-		return deferred.promise;
+		return all_menu_items;
+	}
+
+	function getMenuItemById(menu_id) {
+		for (var i = 0; i < all_menu_items.length; ++i) {
+			if (all_menu_items[i].id == menu_id) {
+				return all_menu_items[i];
+			}
+		}
 	}
 
 
@@ -291,6 +405,27 @@ angular.module('restaurant', ['socket', 'restaurant.config', 'auth'])
 		},
 		printCustomerNames: function() {
 			printCustomerNames();
+		},
+		getCustomerList: function(restaurant_id) {
+			return getCustomerList(restaurant_id);
+		},
+		getCustomerMenuItems: function(restaurant_id, customer_id) {
+			return getCustomerMenuItems(restaurant_id, customer_id);
+		},
+		getAllMenuItems: function(restaurant_id) {
+			return angular.copy(getAllMenuItems(restaurant_id));
+		},
+		getMenuItemById: function(menu_id) {
+			return getMenuItemById(menu_id);
+		},
+		updateCustomerMenuItems: function(customer_id, menu_item) {
+			return updateCustomerMenuItems(customer_id, menu_item);
+		},
+		getQuantityById: function(customer_id, menu_items) {
+			return getQuantityById(customer_id, menu_items);
+		},
+		getCustomerById: function(customer_id) {
+			return getCustomerById(customer_id);
 		}
 	};
 	

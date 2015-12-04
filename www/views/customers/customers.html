@@ -1,17 +1,28 @@
 <ion-view>
 	<ion-header-bar class="bar bar-header">
     <button class="button button-icon icon  ion-chevron-left" ng-click="goBack()"></button>
-	  <h1 class="title">Customers</h1>
+	  <h1 class="title">Table Number: {{ curr_customer.table_id }}</h1>
 	  <button class="button button-icon icon ion-navicon"></button>
   </ion-header-bar>
 
   <ion-content class= "has-header" id="customers" scroll="true">
+<!--
   	<div class="container" id="customer-container">
   		<div class="row customer-row" id="customer-row1">
   				<button class="button button-icon icon ion-plus customer-button" id="add-menu-item" ng-click="addButton()"></button>
   			</div>
   		</div>
   	</div>
+-->
+
+    <button class="customer-button" ng-repeat="menu_item in curr_customer.menu_items">
+      <h1>{{ menu_item.name}} x{{ menu_item.quantity }} </h1>
+      <h2>price: ${{ getPrice(menu_item) }}</h2>
+    </button>
+
+    <button class="button button-icon icon ion-plus customer-button" id="add-menu-item" ng-click="modal.show()">
+    </button>
+
 	</ion-content>
 
 </ion-view>

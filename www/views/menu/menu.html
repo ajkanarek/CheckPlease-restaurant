@@ -1,11 +1,17 @@
+<!-- Modal to display list of menu items for waiter to select -->
+
 <ion-view>
 	<ion-header-bar class="bar bar-header">
-		<button class="button button-icon icon  ion-chevron-left" ng-click="goBack()"></button>
-    <h1 class="title">Menu</h1>
-    <button class="button button-icon icon ion-navicon"></button>
+    <h1 class="title">Select Menu Item</h1>
+    <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
   </ion-header-bar>
 
-  <ion-content class= "has-header" id="menu" scroll="false">
+  <ion-content class= "has-header" id="modal" scroll="true">
+  	<div class="modal">
+        <content has-header="true" padding="true" ng-repeat="menu_item in all_menu_items">
+          <p>{{ menu_item.name }} </p>
+        </content>
+      </div>
 	</ion-content>
 		
 </ion-view>

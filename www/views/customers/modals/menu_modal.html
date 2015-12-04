@@ -1,0 +1,22 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Select Menu Items</h1>
+    <div class="button button-clear" ng-click="cancelChanges()"><span class="icon ion-close"></span></div>
+  </ion-header-bar>
+  <ion-content>
+    <div ng-repeat="menu_item in all_menu_items">
+    	<div class="row">
+    		<div class="col">
+    			<p>{{ menu_item.name }} </p>
+    		</div>
+    		<div>
+				  <div class="button button-icon icon ion-plus" ng-click="incQ(menu_item)"></div>
+				  <p>{{ getQ(menu_item )}}</p>
+				  <div class="button button-icon icon ion-minus" ng-click="decQ(menu_item)"></div>
+				</div>
+    	</div>
+    </div>
+
+    <button class="button button-block button-positive" ng-click="updateMenuItems()">Continue</button>
+  </ion-content>
+</ion-modal-view>

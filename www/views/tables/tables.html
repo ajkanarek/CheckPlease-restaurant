@@ -1,12 +1,10 @@
 <ion-view>
 	<ion-header-bar class="bar bar-header" id="tables-header">
-    <button class="button button-icon icon ion-chevron-left" ng-click="goBack()"></button>
 	  <h1 class="title">Tables</h1>
 	  <button class="button button-icon icon ion-navicon"></button>
   </ion-header-bar>
 
   <ion-content class= "has-header" id="tables" scroll="true">
-  	<div class="container" id="table-container">
  <!--
 			<button class="table-button" ng-click="goToCustomer({{ curr_customer.id }})">
 				<div class="table-content">
@@ -16,8 +14,11 @@
 				</div>
 			</button>
 -->
-		</div>
 
+	<button class="table-button" ng-repeat="customer in customer_list" ng-click="goToCustomer({{ customer.id }})">
+		<h1>table number: {{ customer.table_id }}</h1>
+		<h2>name: {{ customer.name }}</h2>
+	</button>
   
 	</ion-content>
 

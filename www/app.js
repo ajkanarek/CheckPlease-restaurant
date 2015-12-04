@@ -14,7 +14,7 @@ angular.module('checkplease', ['ionic', 'ngCordova', 'auth', 'restaurant', 'sock
             $cordovaSplashscreen.hide();
         });
     */
-    $state.go('home');
+    $state.go('tables');
     });
 }])
 .config(function() {

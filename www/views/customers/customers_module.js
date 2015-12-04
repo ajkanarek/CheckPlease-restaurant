@@ -1,36 +1,82 @@
 angular.module('views.customers', ['restaurant'])
 
 // Home Controller
-.controller('customersCtrl', ['$scope', '$state', 'restaurant', function($scope, $state, restaurant) {
+.controller('customersCtrl', ['$scope', '$state', '$stateParams', '$ionicModal', 'restaurant', function($scope, $state, $stateParams, $ionicModal, restaurant) {
+
+	$scope.restaurant = restaurant.getRestaurant();
+	$scope.all_menu_items = restaurant.getAllMenuItems($scope.restaurant.id);
+	$scope.curr_customer = restaurant.getCustomerById($stateParams.customer_id);
+	$scope.copy = angular.copy($scope.curr_customer)
+
+
 	$scope.goBack = function() {
 		window.history.back();
 	}
 
-	var menu_items_per_row = 4;
-	var num_menu_items = 0; // num_menu_items = restaurant.getNumMenuItems();
-	var row_changed = false;
-	var prev_row = 1;
-	$scope.addButton = function() {
-		console.log("-----------------");
-		restaurant.setNumMenuItems(10, ++num_menu_items);
-		var curr_row = Math.floor(num_menu_items/menu_items_per_row) + 1; 
-		console.log("current row: " + curr_row);
-		console.log("number of menu items: " + num_menu_items);
-		console.log("current row: " + curr_row);
-		console.log("previous row: " + prev_row);
-		if (curr_row != prev_row) {
-			console.log("begin new row");
-			var begin_row = angular.element( document.querySelector( '#customer-container' ) );
-			begin_row.append('<div class="row customer-row" id="customer-row' + curr_row + '">');
-			row_changed = true;
-			prev_row = curr_row;
+	$scope.incQ = function(menu_item) {
+		var found = false;
+		for (var i = 0; i < $scope.copy.menu_items.length; ++i) {
+
+			if ($scope.copy.menu_items[i].id == menu_item.id) {
+				$scope.copy.menu_items[i].quantity++;
+				found = true;
+				break;
+			}
 		}
-		var element = angular.element( document.querySelector( '#customer-row' + curr_row ) );
-		element.append('<button class="customer-button">Button#' + num_menu_items + '</button>'); 
-		if (row_changed) {
-			console.log("end row");
-			row_changed = false;
+		if (!found) {
+			++menu_item.quantity;
+			$scope.copy.menu_items.push(menu_item);
 		}
+
+		//restaurant.updateCustomerMenuItems($stateParams.customer_id, menu_item);
 	}
+
+	$scope.decQ = function(menu_item) {
+		for (var i = 0; i < $scope.copy.menu_items.length; ++i) {
+			if ($scope.copy.menu_items[i].id == menu_item.id && menu_item.quantity > 0) {
+				$scope.copy.menu_items[i].quantity--;
+				break;
+			}
+		}
+			//restaurant.updateCustomerMenuItems($stateParams.customer_id, menu_item);
+
+	}
+
+	$scope.getPrice = function(menu_item) {
+
+		return menu_item.price * menu_item.quantity;
+	}
+
+	$scope.getQ = function(menu_item) {
+		
+		// if menu item is in customer menu item list, 
+		// return its quantity, otherwise it is 0
+		for (var i = 0; i < $scope.copy.menu_items.length; ++i) {
+			if ($scope.copy.menu_items[i].id == menu_item.id) {
+				return $scope.copy.menu_items[i].quantity;
+			}
+		}
+		return 0;
+	}
+
+	$scope.updateMenuItems = function() {
+		$scope.curr_customer = angular.copy($scope.copy);
+		$scope.modal.hide();
+	}
+
+	// cancel changes made to the copy of menu items
+	$scope.cancelChanges = function() {
+		$scope.copy = angular.copy($scope.curr_customer);
+		$scope.modal.hide();
+	}
+
+	//returns menu item 
+
+	$ionicModal.fromTemplateUrl('views/customers/modals/menu_modal.html', {
+	    scope: $scope,
+	    animation: 'slide-in-up'
+  	}).then(function(modal) {
+    	$scope.modal = modal;
+  	});
 
 }])
