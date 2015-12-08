@@ -12,7 +12,7 @@ angular.module('views.login', ['auth'])
 	$scope.error = "";
 
 	$scope.validate = function() {
-		$state.go('home');
+		$state.go('tables'); //used just for testing
 
 		/* Don't allow multiple requests */
 		if($scope.logging_in) { return; }
@@ -24,6 +24,7 @@ angular.module('views.login', ['auth'])
 		/* Check that fields are not empty */
 		if(restaurant.username.length == 0) { $scope.error = "Please enter a username"; return; }
 		else if(restaurant.password.length == 0) { $scope.error = "Please enter a password"; return; }
+		else if (restaurant.username.length > 10) { $scope.error = "Username is too long. Please enter a new one"; return;}
 
 		$scope.logging_in = true;
 

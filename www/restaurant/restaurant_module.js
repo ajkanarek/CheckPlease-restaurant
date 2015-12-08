@@ -120,7 +120,7 @@ angular.module('restaurant', ['socket', 'restaurant.config', 'auth'])
 			id: 4,
 			name: "Peter",
 			menu_items: temp_menu_list,
-			table_id: 3
+			table_id: 8
 	};
 	customer4 = {
 			id: 1,

@@ -7,17 +7,14 @@
   <ion-content class= "has-header" id="tables" scroll="true">
 		<div class="table-container">
 			<button class="table-item" ng-repeat="customer in customer_list" ng-click="goToCustomer({{ customer.id }})">
-				<div class="table-content">
-					<div id="customer-image"> </div>
-					<div id="customer-info">
-						<h1> table number: {{ customer.table_id }}</h1>
-						<h2>name: {{ customer.name }}</h2>
-					</div>
-
+				<div id="table-image"> 
+					<p> {{ customer.table_id }}</p>
+				</div>
+				<div id="table-info">
+					<p>Name: {{ customer.name }}</p>
 				</div>
 			</button>
 		</div>
   
 	</ion-content>
-
 </ion-view>
